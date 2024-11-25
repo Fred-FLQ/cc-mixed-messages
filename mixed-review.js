@@ -17,7 +17,7 @@ const game_device = [
     "PlayStation 4"
 ];
 
-const adjective = [
+const adjectives = [
     "breathtaking",
     "vibrant",
     "stunning",
@@ -27,7 +27,7 @@ const adjective = [
     "otherworldly",
     "jaw-dropping"
 ];
-const hours = Math.floor(Math.random() * 90 + 10)
+
 const review_comments = {
     visuals: [
         "The visuals were ${adjective}, bringing the world to life with every detail.",
@@ -60,3 +60,29 @@ const review_comments = {
         "For fans of ${game_title}, this is a must-play, offering ${adjective} moments that will stay with you."
     ]
 };
+
+const randomizer = (data) => {
+    return Math.floor(Math.random() * data.length);
+}
+
+
+// Next step: need to loop through all the adjectives to avoir repetition
+const newReview = () => {
+    let hours = Math.floor(Math.random() * 90 + 10);
+    let title = game_title[randomizer(game_title)];
+    let device = game_device[randomizer(game_device)];
+    let adjective = adjectives[randomizer(adjectives)];
+    let review = `I just wrapped up playing ${title} on my ${device}, and it was a really ${adjective} experience! It took me ${hours} hours to see the credits roll.`;
+    
+    for (let each of Object.values(review_comments)) {
+        let comment = each[randomizer(each)];
+        comment = comment
+            .replaceAll('${adjective}', `${adjective}`)
+            .replaceAll('${game_title}', `${title}`);
+        review += ' ' + comment;
+    }
+
+    console.log(review);
+}
+
+newReview();
