@@ -78,7 +78,7 @@ const newReview = () => {
     let device = game_device[randomizer(game_device)];
     // let adjective = adjectives[randomizer(adjectives)];
     let review = `I just wrapped up playing ${title} on my ${device}, and it was a really ${adjectivesList.splice(randomizer(adjectivesList), 1)} experience! It took me ${hours} hours to see the credits roll.`;
-    
+
     for (let each of Object.values(review_comments)) {
         let comment = each[randomizer(each)];
         comment = comment
@@ -87,7 +87,7 @@ const newReview = () => {
         review += ' ' + comment;
     }
 
-    console.log(review);
+    return review;
 }
 
-newReview();
+document.getElementById("review").innerText = newReview();
